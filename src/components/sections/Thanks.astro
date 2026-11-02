@@ -15,7 +15,7 @@ const { title, text, button } = Astro.props;
 
   <div class="content" data-reveal>
     {text && <p class="text">{text}</p>}
-    <Button text={button} variant="accent" href="/" />
+    <Button text={button} variant="accent" href={hero.logo.href} />
   </div>
 
   <img class="panel" data-reveal src={hero.panel.src} alt={hero.panel.alt} />

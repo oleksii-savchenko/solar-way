@@ -5,6 +5,11 @@
   "title": "Solar Way | Solar Stations for Homes in Ukraine",
   "description": "Solar Way designs, installs and maintains solar stations for homes across Ukraine. 90+ completed projects, up to 30% savings and a warranty of up to 25 years.",
   "themeColor": "#ffe448",
+  "icons": {
+    "svg": "/favicon.svg",
+    "png": "/favicon-48.png",
+    "apple": "/apple-touch-icon.png"
+  },
   "ogImage": {
     "src": "/og-image.jpg",
     "width": 1800,

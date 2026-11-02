@@ -10,6 +10,7 @@
     ]
   },
   "logo": {
+    "href": "/",
     "before": "Solar",
     "after": "Way",
     "dot": "/images/hero/logo-dot.svg",
