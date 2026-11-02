@@ -7,7 +7,7 @@ import popup from "../content/popup-form.json";
   <div class="inner">
     <h2 class="title" id="popup-form-title">{popup.title}</h2>
     <p class="description">{popup.description}</p>
-    <form class="form" novalidate data-popup-form>
+    <form class="form" novalidate data-popup-form data-thanks-href={popup.thanksHref}>
       <!-- Послуга, з якої прийшов запит. Порожньо, якщо поп-ап відкрито не з блоку послуг -->
       <input type="hidden" name="service" data-popup-service />
       <input
@@ -179,8 +179,6 @@ import popup from "../content/popup-form.json";
 </style>
 
 <script>
-  import popup from "../content/popup-form.json";
-
   const form = document.querySelector<HTMLFormElement>("[data-popup-form]")!;
   const popup = form.closest("dialog")!;
   const service = form.querySelector<HTMLInputElement>("[data-popup-service]")!;
@@ -215,7 +213,7 @@ import popup from "../content/popup-form.json";
     if (form.querySelector(".is-error")) return;
 
     // Сюди підключимо відправку заявки в Telegram: new FormData(form)
-    window.location.href = popup.thanksHref;
+    window.location.href = form.dataset.thanksHref!;
   });
 
   popup.addEventListener("close", () => {
