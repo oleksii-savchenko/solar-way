@@ -1,0 +1,189 @@
+---
+import hero from "../../content/hero.json";
+import stats from "../../content/stats.json";
+---
+
+<section class="stats">
+  <div class="grid" data-reveal-group data-cursor-zone>
+    <div class="intro">
+      <h2 class="title" data-blur-title>{stats.title}</h2>
+      <div class="logo">
+        {hero.logo.before}
+        <img src={stats.logoDot} alt="" />
+        {hero.logo.after}
+      </div>
+    </div>
+
+    {
+      stats.items.map((item) => (
+        <article class:list={["stat", `stat--${item.tone}`]}>
+          <div class="stat-top">
+            <p class="number" data-counter>{item.number}</p>
+            <p class="caption">{item.caption}</p>
+          </div>
+          <p class="text">{item.text}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .stats {
+    padding-top: var(--space-grid-gap);
+  }
+
+  .stats p {
+    margin: 0;
+  }
+
+
+  .grid {
+    display: grid;
+    gap: var(--space-grid-gap);
+  }
+
+  .intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: calc(var(--space-gutter) * 2.1) var(--space-gutter) calc(var(--space-gutter) * 4.4) calc(var(--space-gutter) * 2.1);
+    background: var(--color-text);
+    color: var(--color-white);
+  }
+
+  .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: calc(var(--text-number) * 0.3);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-number);
+    letter-spacing: var(--tracking-tight);
+    white-space: pre-line;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-grid-gap);
+    margin-top: var(--space-grid-gap);
+    font-size: calc(var(--text-small-2) * 0.75);
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+  }
+
+  /* Пропорції точки відносно шрифту логотипа, з макета */
+  .logo img {
+    width: 0.733em;
+  }
+
+  .stat--accent {
+    --stat-line: var(--color-white);
+    background: var(--color-accent);
+  }
+
+  .stat--panel {
+    --stat-line: var(--color-line);
+    background: var(--color-panel);
+  }
+
+  .stat-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: calc(var(--space-gutter) * 2.25) var(--space-gutter) calc(var(--space-gutter) * 2.5);
+  }
+
+  .number,
+  .caption {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-number);
+    text-transform: uppercase;
+  }
+
+  .number {
+    font-size: var(--text-number);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .caption {
+    font-size: var(--text-number-caption);
+    text-align: right;
+    white-space: pre-line;
+  }
+
+  .stats .caption {
+    margin-top: calc(var(--space-gutter) * 0.85);
+    margin-left: auto;
+  }
+
+  .text {
+    padding: calc(var(--space-gutter) * 1.65) calc(var(--space-gutter) * 4) calc(var(--space-gutter) * 1.8) var(--space-gutter);
+    border-top: 1px solid var(--stat-line);
+    font-size: calc(var(--text-small-2) * 1.06);
+  }
+
+  @media (min-width: 768px) {
+    .stats {
+      container-type: inline-size;
+      padding: var(--space-grid-gap) var(--space-grid-edge) 0;
+    }
+
+    .grid {
+      /* Пропорції колонок з макета */
+      grid-template-columns: 860fr 515fr 515fr;
+    }
+
+    .title {
+      font-size: calc(var(--text-number) / 2);
+    }
+
+    .stat {
+      --stat-left: calc(var(--space-gutter) - var(--text-small-1));
+      --stat-right: calc(var(--space-gutter) - var(--text-small-1));
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Картки біля краю екрана вирівняні по сітці сторінки */
+    .stat:nth-child(3),
+    .stat:nth-child(5) {
+      --stat-right: calc(var(--space-gutter) - var(--space-grid-edge));
+    }
+
+    .stat:nth-child(4) {
+      --stat-left: calc(var(--space-gutter) - var(--space-grid-edge));
+    }
+
+    .stat:nth-child(5) {
+      grid-column: 2 / -1;
+    }
+
+    .stat-top {
+      flex: 1;
+      padding: calc(var(--space-gutter) / 2 + var(--space-grid-edge)) var(--stat-right)
+        calc(var(--space-gutter) / 2 + var(--space-grid-edge) + var(--space-grid-gap)) var(--stat-left);
+    }
+
+    .stats .caption {
+      margin-top: calc(var(--space-grid-edge) + var(--space-grid-gap) * 2);
+    }
+
+    .text {
+      font-size: var(--text-small-2);
+      white-space: pre-line;
+      padding: calc(var(--space-gutter) / 2 - var(--space-grid-gap)) var(--stat-right)
+        calc(var(--space-gutter) / 2 - var(--space-grid-gap) / 2) var(--stat-left);
+    }
+
+    .intro {
+      padding: calc(var(--space-gutter) - var(--space-grid-edge)) calc(var(--space-gutter) - var(--text-small-1))
+        var(--space-gutter) calc(var(--space-gutter) - var(--space-grid-edge));
+    }
+
+    .logo {
+      font-size: var(--text-small-1);
+    }
+  }
+</style>

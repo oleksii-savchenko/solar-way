@@ -1,0 +1,189 @@
+---
+import footer from "../../content/footer.json";
+import hero from "../../content/hero.json";
+
+// На сторінках Thanks і Privacy policy футер іде впритул до контенту
+const { flush = false } = Astro.props;
+---
+
+<footer class:list={["footer", { "footer--flush": flush }]}>
+  <div class="main" data-reveal>
+    <nav class="links">
+      {hero.menu.links.map((link) => <a href={link.href}>{link.text}</a>)}
+    </nav>
+    <div class="logo">
+      {hero.logo.before}
+      <img src={footer.logoDot} alt="" />
+      {hero.logo.after}
+    </div>
+  </div>
+
+  <div class="bottom" data-reveal>
+    <p>{footer.copyright}</p>
+    <a class="privacy" href={footer.privacy.href}>{footer.privacy.text}</a>
+    <a class="developer" href={footer.developer.href} target="_blank" rel="noopener">
+      <img src={footer.developer.logo} alt="" />
+      <span>{footer.developer.text}</span>
+    </a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    container-type: inline-size;
+    margin-top: calc(var(--space-gutter) * 1.4);
+    padding: calc(var(--space-gutter) * 1.9) var(--space-gutter) calc(var(--space-gutter) * 1.6);
+    background: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .footer.footer--flush {
+    margin-top: 0;
+  }
+
+  .footer p {
+    margin: 0;
+  }
+
+  .footer a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--space-gutter) * 1.3);
+  }
+
+  .links {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--text-small-1);
+    font-weight: var(--font-weight-regular);
+    line-height: calc(var(--leading-link) * 4 / 3);
+  }
+
+  .links a,
+  .privacy,
+  .developer span {
+    position: relative;
+  }
+
+  /* Лінія виїжджає зліва направо і так само повертається назад, як у меню */
+  .links a::after,
+  .privacy::after,
+  .developer span::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: calc(var(--text-field) / 18);
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .links a:focus-visible::after,
+  .privacy:focus-visible::after,
+  .developer:focus-visible span::after {
+    transform: scaleX(1);
+  }
+
+  @media (hover: hover) {
+    .links a:hover::after,
+    .privacy:hover::after,
+    .developer:hover span::after {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .links a::after,
+    .privacy::after,
+    .developer span::after {
+      transition: none;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    /* Логотип на всю ширину сітки: 57px при екрані 390px */
+    font-size: calc(100cqw * 57 / 390);
+    line-height: var(--leading-number);
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+  }
+
+  /* Пропорції точки й відступів до неї відносно шрифту логотипа, з макета */
+  .logo img {
+    width: 0.733em;
+    margin: 0 0.06em 0 0.19em;
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--space-gutter) * 0.9);
+    margin-top: calc(var(--space-gutter) * 2);
+    font-size: var(--text-small-2);
+  }
+
+  .developer {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--space-gutter) * 0.6);
+  }
+
+  .developer span {
+    white-space: pre-line;
+  }
+
+  @media (min-width: 768px) {
+    .footer {
+      margin-top: calc(var(--space-section) + var(--space-gutter) / 2);
+      padding: calc(var(--space-section) - var(--space-gutter) / 2) var(--space-gutter)
+        calc(var(--space-gutter) - var(--text-small-1));
+    }
+
+    .main {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0;
+    }
+
+    .links {
+      order: 0;
+      align-items: flex-start;
+      font-size: var(--text-footer-link);
+      line-height: var(--leading-link);
+    }
+
+    .logo {
+      /* Розмір логотипа: 231.6px на ширині 1920, як і цифри масштабується разом з екраном */
+      font-size: calc(var(--text-number) * 1.158);
+    }
+
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      margin-top: calc(var(--space-gutter) + var(--space-grid-edge) * 2);
+      font-size: calc(var(--text-small-2) * 0.7);
+    }
+
+    .bottom p {
+      justify-self: start;
+    }
+
+    .developer {
+      justify-self: end;
+      gap: calc(var(--space-grid-gap) * 2);
+    }
+  }
+</style>

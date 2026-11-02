@@ -1,0 +1,41 @@
+{
+  "menu": {
+    "openLabel": "Open menu",
+    "closeLabel": "Close menu",
+    "links": [
+      { "text": "About us", "href": "/#about" },
+      { "text": "Services", "href": "/#services" },
+      { "text": "Projects", "href": "/#projects" },
+      { "text": "Contact us", "href": "/#contact" }
+    ]
+  },
+  "logo": {
+    "before": "Solar",
+    "after": "Way",
+    "dot": "/images/hero/logo-dot.svg",
+    "dotMenuOpen": "/images/hero/logo-dot-accent.svg"
+  },
+  "phone": {
+    "text": "+38 095 456 12 36",
+    "href": "tel:+380954561236"
+  },
+  "title": "the\nsun works",
+  "lead": "Install a solar station and start\nsaving on energy today",
+  "tagline": "FOR YOUr tasks",
+  "brackets": "/images/hero/brackets.svg",
+  "button": "Calculate the cost",
+  "features": [
+    {
+      "icon": "/images/hero/sun.svg",
+      "text": "Use solar energy\nfor your own\nneeds"
+    },
+    {
+      "icon": "/images/hero/coat.svg",
+      "text": "We work all over\nUkraine"
+    }
+  ],
+  "panel": {
+    "src": "/images/hero/panel.png",
+    "alt": "Black solar panel station"
+  }
+}

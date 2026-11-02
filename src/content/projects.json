@@ -1,0 +1,58 @@
+{
+  "title": {
+    "first": "COMPLETED",
+    "second": "PROJECTS"
+  },
+  "about": "We have installed hundreds of solar\nstations all over Ukraine that provide\ncomfort and savings for our clients\n\nHere are some of them:",
+  "brackets": {
+    "left": "/images/projects/bracket-left.svg",
+    "right": "/images/projects/bracket-right.svg"
+  },
+  "stat": {
+    "value": "100",
+    "suffix": "+",
+    "caption": "clients"
+  },
+  "dot": "/images/projects/dot.svg",
+  "viewMore": "View more",
+  "closeLabel": "Close photo",
+  "closeIcon": "/images/projects/close.svg",
+  "items": [
+    {
+      "city": "DNIPRO",
+      "text": "проектування і встановлення\nсонячної станції на 10 кВт",
+      "image": "/images/projects/dnipro.jpg",
+      "imageAlt": "House with black solar panels on the roof in Dnipro"
+    },
+    {
+      "city": "KYIV",
+      "text": "проектування і встановлення\nсонячної станції на 6 кВт",
+      "image": "/images/projects/kyiv.jpg",
+      "imageAlt": "House with solar panels on a red roof in Kyiv"
+    },
+    {
+      "city": "IVANO-FRANKIVSK",
+      "text": "проектування і встановлення\nсонячної станції на 12 кВт",
+      "image": "/images/projects/ivano-frankivsk.jpg",
+      "imageAlt": "Solar panels on a roof among trees in Ivano-Frankivsk"
+    },
+    {
+      "city": "ODESA",
+      "text": "проектування і встановлення\nсонячної станції на 12 кВт",
+      "image": "/images/projects/odesa.jpg",
+      "imageAlt": "Brick house with black solar panels in Odesa"
+    },
+    {
+      "city": "POLTAVA",
+      "text": "проектування і встановлення\nсонячної станції на 10 кВт",
+      "image": "/images/projects/poltava.jpg",
+      "imageAlt": "Solar panels on a green roof in Poltava"
+    },
+    {
+      "city": "KHARKIV",
+      "text": "проектування і встановлення\nсонячної станції на 12 кВт",
+      "image": "/images/projects/kharkiv.jpg",
+      "imageAlt": "House with solar panels on a sloped roof in Kharkiv"
+    }
+  ]
+}

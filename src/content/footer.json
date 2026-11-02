@@ -1,0 +1,13 @@
+{
+  "logoDot": "/images/footer/logo-dot.svg",
+  "copyright": "SOLAR WAY ® 2026",
+  "privacy": {
+    "text": "Privacy policy",
+    "href": "/privacy-policy"
+  },
+  "developer": {
+    "text": "Site development\nby Hawk Style Design",
+    "href": "https://hawk-style.com",
+    "logo": "/images/footer/hawk-style.svg"
+  }
+}

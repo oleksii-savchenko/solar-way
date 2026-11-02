@@ -1,0 +1,232 @@
+---
+import why from "../../content/why.json";
+---
+
+<section class="why" id="about">
+  <div class="top" data-reveal>
+    <div class="intro">
+      <h2 class="title" data-blur-title>
+        {why.title.first}
+        <span>{why.title.second}</span>
+      </h2>
+      <p class="about">{why.about}</p>
+    </div>
+    <img class="image" src={why.image} alt={why.imageAlt} loading="lazy" />
+  </div>
+
+  <div class="cards" data-reveal-group data-cursor-zone>
+    {
+      why.items.map((item) => (
+        <article class:list={["card", { "card--featured": item.featured }]}>
+          <div class="card-top">
+            <img class="icon" src={item.icon} alt="" />
+            <p class="caption">{item.caption}</p>
+          </div>
+          <p class="text">{item.text}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .why {
+    margin-top: var(--space-grid-gap);
+  }
+
+  .why p {
+    margin: 0;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intro {
+    padding: calc(var(--space-gutter) * 1.45) var(--space-gutter) calc(var(--space-gutter) * 1.25);
+  }
+
+  .title,
+  .caption {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-number);
+    text-transform: uppercase;
+  }
+
+  .title {
+    margin: 0;
+    font-size: calc(var(--text-number) * 0.66);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .title span {
+    display: block;
+    color: var(--color-accent);
+  }
+
+  .caption {
+    white-space: pre-line;
+  }
+
+  .why .about {
+    margin-top: calc(var(--space-gutter) / 2);
+    font-size: calc(var(--text-small-2) * 1.05);
+  }
+
+  .image {
+    order: -1;
+    display: block;
+    width: 100%;
+    filter: grayscale(1);
+    transition: filter 0.3s;
+    /* У макеті фото віддзеркалене */
+    scale: -1 1;
+  }
+
+  .image:hover {
+    filter: grayscale(0);
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--space-grid-gap);
+  }
+
+  .card {
+    --card-line: var(--color-text);
+    background: var(--color-panel);
+    color: var(--color-text);
+    transition:
+      background 0.3s,
+      color 0.3s;
+  }
+
+  .card:hover {
+    background: var(--color-accent);
+  }
+
+  .card--featured {
+    background: var(--color-accent);
+  }
+
+  .card--featured:hover {
+    --card-line: var(--color-white);
+    background: var(--color-text);
+    color: var(--color-white);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: calc(var(--space-gutter) * 3.3) var(--space-gutter) calc(var(--space-gutter) * 3);
+  }
+
+  .icon {
+    display: block;
+    width: calc(var(--space-gutter) * 6.25);
+    transition: filter 0.3s;
+  }
+
+  .card--featured:hover .icon {
+    filter: brightness(0) invert(1);
+  }
+
+  .caption {
+    font-size: calc(var(--text-number-caption) * 1.1);
+    text-align: right;
+  }
+
+  .text {
+    padding: calc(var(--space-gutter) * 1.85) var(--space-gutter) calc(var(--space-gutter) * 1.9);
+    border-top: 1px solid var(--card-line);
+    font-size: calc(var(--text-small-2) * 1.19);
+    transition: border-color 0.3s;
+  }
+
+  @media (min-width: 768px) {
+    .why {
+      container-type: inline-size;
+      margin-top: var(--space-section);
+      padding-inline: var(--space-grid-edge);
+    }
+
+    .top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-grid-gap);
+    }
+
+    .intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 0 var(--space-gutter) calc(var(--space-gutter) - var(--space-grid-edge));
+    }
+
+    .title {
+      font-size: var(--text-number);
+    }
+
+    .why .about {
+      margin-top: 0;
+      font-size: var(--text-small-2);
+      white-space: pre-line;
+    }
+
+    .image {
+      order: 0;
+    }
+
+    .cards {
+      /* Пропорції колонок з макета */
+      grid-template-columns: 948fr 470fr 470fr;
+      margin-top: var(--space-grid-gap);
+    }
+
+    .card {
+      --card-left: calc(var(--space-gutter) * 0.7);
+      --card-right: calc(var(--space-gutter) - var(--text-small-1));
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Картки біля краю екрана вирівняні по сітці сторінки */
+    .card:first-child {
+      --card-left: calc(var(--space-gutter) - var(--space-grid-edge));
+    }
+
+    .card:last-child {
+      --card-right: calc(var(--space-gutter) - var(--space-grid-edge));
+    }
+
+    .card-top {
+      flex: 1;
+      align-items: center;
+      padding: calc(var(--space-gutter) - var(--space-grid-edge) * 3) var(--card-right)
+        calc(var(--space-gutter) / 2 + var(--space-grid-gap) * 2) var(--card-left);
+    }
+
+    .icon {
+      width: auto;
+    }
+
+    .caption {
+      font-size: var(--text-number-caption);
+    }
+
+    .why .caption {
+      align-self: flex-start;
+      margin-top: var(--space-grid-edge);
+    }
+
+    .text {
+      padding: calc(var(--space-gutter) / 2 - var(--space-grid-gap)) var(--card-right)
+        calc(var(--space-gutter) / 2 - var(--space-grid-gap) / 2) var(--card-left);
+      font-size: var(--text-small-2);
+      white-space: pre-line;
+    }
+  }
+</style>

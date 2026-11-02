@@ -1,0 +1,169 @@
+---
+import Button from "../Button.astro";
+import contacts from "../../content/contacts.json";
+import hero from "../../content/hero.json";
+---
+
+<section class="contacts" id="contact">
+  <div class="info" data-reveal>
+    <p class="about">{contacts.about}</p>
+    <div class="details">
+      <a class="phone" href={hero.phone.href}>{hero.phone.text}</a>
+      <p class="address">{contacts.address}</p>
+      <a class="email" href={`mailto:${contacts.email}`}>{contacts.email}</a>
+      <Button text={contacts.button} variant="accent" data-open-popup="popup-form" />
+    </div>
+  </div>
+
+  <div class="map" data-reveal>
+    <a class="map-fallback" href={contacts.map.link} target="_blank" rel="noopener">
+      <img class="map-image" src={contacts.map.image} alt={contacts.map.imageAlt} loading="lazy" />
+      <img class="map-dot" src={contacts.map.dot} alt="" />
+    </a>
+  </div>
+</section>
+
+<style>
+  .contacts {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-grid-gap);
+  }
+
+  .contacts p {
+    margin: 0;
+  }
+
+  .contacts a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .info {
+    padding: calc(var(--space-gutter) * 1.4) var(--space-gutter) 0;
+  }
+
+  .about {
+    font-size: calc(var(--text-small-2) * 1.19);
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: calc(var(--space-gutter) * 1.75);
+  }
+
+  .phone {
+    /* Телефон на всю ширину сітки: 46.3px при екрані 390px */
+    font-size: min(calc(var(--text-number) * 0.305), 100cqw * 46.3 / 390);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-number);
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+  }
+
+  .address {
+    font-size: calc(var(--text-small-1) * 1.1);
+  }
+
+  .contacts .address {
+    margin-top: var(--space-grid-gap);
+  }
+
+  .email {
+    margin: calc(var(--space-grid-gap) * 1.5) 0 calc(var(--space-gutter) * 1.4);
+    font-size: calc(var(--text-small-2) * 1.19);
+  }
+
+  .details :global(.button) {
+    padding-block: calc(var(--space-gutter) * 1.25);
+    font-size: calc(var(--text-small-2) * 1.24);
+  }
+
+  .map {
+    position: relative;
+    order: -1;
+    aspect-ratio: 948 / 613;
+  }
+
+  .map-fallback {
+    position: relative;
+    display: block;
+    height: 100%;
+  }
+
+  .map-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+  }
+
+  /* Положення точки на скріншоті з макета */
+  .map-dot {
+    position: absolute;
+    top: 56.4%;
+    left: 36.8%;
+    width: calc(var(--space-gutter) * 1.3);
+    translate: -50% -50%;
+  }
+
+  @media (min-width: 768px) {
+    .contacts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-grid-gap);
+      margin-top: calc(var(--space-section) + var(--space-gutter) / 2);
+      padding-inline: var(--space-grid-edge);
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 0 0 calc(var(--space-gutter) - var(--space-grid-edge));
+    }
+
+    .about {
+      font-size: var(--text-small-2);
+      white-space: pre-line;
+    }
+
+    .details {
+      margin-top: 0;
+    }
+
+    .phone {
+      font-size: calc(var(--text-number) * 0.4);
+    }
+
+    .address {
+      font-size: calc(var(--text-field) * 2);
+    }
+
+    .contacts .address {
+      margin-top: calc(var(--space-grid-gap) / 2);
+    }
+
+    .email {
+      margin: var(--space-grid-gap) 0 calc(var(--space-gutter) * 0.6);
+      font-size: var(--text-small-2);
+    }
+
+    .details :global(.button) {
+      padding-block: calc(var(--space-gutter) / 2 - var(--space-grid-gap) * 3);
+      font-size: var(--text-button);
+    }
+
+    .map {
+      order: 0;
+    }
+
+    .map-dot {
+      width: auto;
+    }
+  }
+</style>

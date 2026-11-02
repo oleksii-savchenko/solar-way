@@ -1,0 +1,12 @@
+{
+  "about": "We are always in touch to\nanswer your questions and\nhelp you make a choice",
+  "address": "10 Soniachna St., Kyiv",
+  "email": "info@solarcompany.ua",
+  "button": "Get a consultation",
+  "map": {
+    "image": "/images/contacts/map.jpg",
+    "imageAlt": "Map with the office location in Kyiv",
+    "dot": "/images/contacts/map-dot.svg",
+    "link": "https://www.google.com/maps/search/?api=1&query=50.4285,30.4625"
+  }
+}

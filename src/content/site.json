@@ -1,0 +1,14 @@
+{
+  "lang": "en",
+  "locale": "en_US",
+  "name": "Solar Way",
+  "title": "Solar Way | Solar Stations for Homes in Ukraine",
+  "description": "Solar Way designs, installs and maintains solar stations for homes across Ukraine. 90+ completed projects, up to 30% savings and a warranty of up to 25 years.",
+  "themeColor": "#ffe448",
+  "ogImage": {
+    "src": "/og-image.jpg",
+    "width": 1800,
+    "height": 1000,
+    "alt": "Solar Way: the sun works"
+  }
+}

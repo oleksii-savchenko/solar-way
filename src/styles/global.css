@@ -1,0 +1,85 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Масштаб рахує скрипт у Layout.astro. Поп-апи поза секціями не масштабуються */
+main > section,
+body > footer {
+  zoom: var(--page-zoom, 1);
+}
+
+/* Клас додає і знімає анімація появи, див. scripts/reveal.ts */
+.has-reveal [data-reveal],
+.has-reveal [data-hero-step],
+.has-reveal [data-reveal-group] > * {
+  opacity: 0;
+}
+
+/* Лічильник, див. scripts/counter.ts. Ширину барабана задає підсумкова цифра, тож блок не змінює розмір */
+.reel {
+  position: relative;
+  display: inline-block;
+  overflow: visible clip;
+}
+
+.reel-final {
+  visibility: hidden;
+}
+
+.reel-stack {
+  position: absolute;
+  inset: 0 0 auto;
+  text-align: center;
+}
+
+.reel-stack span {
+  display: block;
+}
+
+.blur-word {
+  display: inline-block;
+}
+
+/* Круглий курсор, див. scripts/cursor.ts */
+.custom-cursor {
+  display: none;
+}
+
+/* Білий у режимі difference інвертує все, що під ним. Розмір як у точки логотипа */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  [data-cursor-zone],
+  [data-cursor-zone] * {
+    cursor: none;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: block;
+    width: calc(var(--text-number-caption) * 0.733);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-white);
+    mix-blend-mode: difference;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-small-1);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-normal);
+}

@@ -1,0 +1,29 @@
+{
+  "title": {
+    "first": "WHY CLIENTS",
+    "second": "CHOOSE US"
+  },
+  "about": "We are a team of professionals with 5 years of experience in installing\nsolar stations. from Kyiv to the most remote corners of Ukraine, we\nhelp make your home energy independent.",
+  "image": "/images/why/workers.jpg",
+  "imageAlt": "Workers mounting a photovoltaic solar panel system",
+  "items": [
+    {
+      "icon": "/images/why/folder.svg",
+      "caption": "TURNKEY\nCUSTOM\nSOLUTIONS",
+      "text": "Every project is designed around your home's specifics, energy\nneeds and budget. We handle the full cycle of work: from design\nto installation and system setup",
+      "featured": false
+    },
+    {
+      "icon": "/images/why/solar-panel.svg",
+      "caption": "GUARANTEED\nEQUIPMENT\nQUALITY",
+      "text": "Certified solar panels, inverters and\nmounting structures from the\nworld's leading manufacturers",
+      "featured": true
+    },
+    {
+      "icon": "/images/why/calendar.svg",
+      "caption": "FAST\nDELIVERY",
+      "text": "We install the system within 3 to 10\nbusiness days, depending on the\nproject scale",
+      "featured": false
+    }
+  ]
+}

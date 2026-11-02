@@ -1,0 +1,93 @@
+---
+import Button from "../Button.astro";
+import SiteHeader from "../SiteHeader.astro";
+import hero from "../../content/hero.json";
+
+// Той самий шаблон використовує сторінка 404, вона без тексту під заголовком
+const { title, text, button } = Astro.props;
+---
+
+<section class="thanks">
+  <div class="top" data-reveal>
+    <SiteHeader light />
+    <h1 class="title">{title}</h1>
+  </div>
+
+  <div class="content" data-reveal>
+    {text && <p class="text">{text}</p>}
+    <Button text={button} variant="accent" href="/" />
+  </div>
+
+  <img class="panel" data-reveal src={hero.panel.src} alt={hero.panel.alt} />
+</section>
+
+<style>
+  .thanks {
+    position: relative;
+    container-type: inline-size;
+  }
+
+  .top {
+    padding: calc(var(--space-gutter) * 1.5) var(--space-gutter) 0;
+  }
+
+  .title {
+    margin: calc(var(--space-gutter) * 2.5) 0 0;
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-h1);
+    letter-spacing: var(--tracking-tight);
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+    /* Невидима частина рядка великого заголовка заходить на кнопку й перехоплює курсор */
+    pointer-events: none;
+  }
+
+  .content {
+    padding: calc(var(--space-gutter) * 1.4) var(--space-gutter) 0;
+    text-align: center;
+  }
+
+  .text {
+    margin: 0 0 calc(var(--space-gutter) * 1.5);
+  }
+
+  .panel {
+    display: block;
+    width: calc(100% - var(--space-gutter));
+    margin: calc(var(--space-gutter) * 1.5) auto 0;
+  }
+
+  @media (min-width: 768px) {
+    .top {
+      position: relative;
+      padding: calc(var(--space-gutter) - var(--space-grid-gap) * 3) var(--space-gutter) var(--space-grid-edge);
+    }
+
+    .title {
+      margin-top: calc(var(--space-gutter) + var(--space-grid-gap) * 2);
+    }
+
+    .content {
+      padding: calc(var(--space-gutter) / 2 - var(--space-grid-gap) / 2) var(--space-gutter) 0;
+    }
+
+    .text {
+      margin-bottom: calc(var(--space-gutter) * 0.3);
+    }
+
+    /* Кнопка великого розміру з UI-кіту, але жовта, як у макеті */
+    .content :global(.button) {
+      padding: calc(var(--space-gutter) / 2 - var(--space-grid-gap) * 2) calc(var(--space-gutter) - var(--text-small-1));
+      font-size: var(--text-small-1);
+    }
+
+    .panel {
+      width: calc(100% - var(--space-gutter) * 3 - var(--space-grid-gap) * 4);
+      margin-top: calc(var(--space-gutter) * 0.42);
+    }
+  }
+</style>

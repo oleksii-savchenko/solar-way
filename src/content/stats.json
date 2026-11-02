@@ -1,0 +1,30 @@
+{
+  "title": "CLEAR FACTS\nAND FIGURES",
+  "logoDot": "/images/stats/logo-dot.svg",
+  "items": [
+    {
+      "tone": "accent",
+      "number": "5+",
+      "caption": "YEARS OF\nEXPERIENCE",
+      "text": "we have been installing solar\nstations for homes all over\nUkraine for over 5 years"
+    },
+    {
+      "tone": "panel",
+      "number": "90+",
+      "caption": "COMPLETED\nPROJECTS",
+      "text": "more than a hundred satisfied clients\nacross the country have gained energy\nindependence"
+    },
+    {
+      "tone": "panel",
+      "number": "30%",
+      "caption": "COST\nSAVINGS",
+      "text": "our client’s average electricity\nsavings reach up to 30% in the\nvery first year"
+    },
+    {
+      "tone": "panel",
+      "number": "25",
+      "caption": "YEARS OF\nWARRANTY",
+      "text": "the solar panels we install have\na service life and warranty of\nup to 25 years"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+---
+import "@fontsource/league-gothic/400.css";
+import "@fontsource/inter-tight/400.css";
+import "@fontsource/inter-tight/500.css";
+import "../styles/variables.css";
+import "../styles/global.css";
+import contacts from "../content/contacts.json";
+import hero from "../content/hero.json";
+import site from "../content/site.json";
+
+const { title = site.title, description = site.description, noindex = false } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(site.ogImage.src, Astro.site);
+
+// Дані компанії для пошуковиків, лише на головній
+const business =
+  Astro.url.pathname === "/" &&
+  JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: site.name,
+    description: site.description,
+    url: Astro.site,
+    image: ogImage,
+    telephone: hero.phone.href.replace("tel:", ""),
+    email: contacts.email,
+    address: contacts.address,
+  });
+---
+
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta name="theme-color" content={site.themeColor} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content={site.ogImage.width} />
+    <meta property="og:image:height" content={site.ogImage.height} />
+    <meta property="og:image:alt" content={site.ogImage.alt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {business && <script is:inline type="application/ld+json" set:html={business} />}
+
+    <script is:inline>
+      // Від 768 до 1920 вся веб-версія зменшується пропорційно макету 1920
+      (function () {
+        var root = document.documentElement;
+        function update() {
+          var width = root.clientWidth;
+          root.style.setProperty("--page-zoom", width >= 768 && width < 1920 ? width / 1920 : 1);
+        }
+        update();
+        new ResizeObserver(update).observe(root);
+
+        // Ховає блоки до старту анімації появи, щоб вони не блимали при завантаженні
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) root.classList.add("has-reveal");
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import "../scripts/reveal";
+      import "../scripts/counter";
+      import "../scripts/cursor";
+    </script>
+  </body>
+</html>

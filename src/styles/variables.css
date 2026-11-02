@@ -1,0 +1,68 @@
+/* Значення з Figma. Базові — мобільний макет (390), у media — десктопний (1920). */
+:root {
+  /* Кольори */
+  --color-accent: #ffe448;
+  --color-text: #101010;
+  --color-white: #ffffff;
+  --color-panel: #f1f2f6;
+  --color-line: #c7cad6;
+  --color-error: #f86262;
+  --color-field-border: #8c8c8c;
+  --color-placeholder: #b7b7b7;
+
+  /* Шрифти */
+  --font-display: "League Gothic", sans-serif;
+  --font-body: "Inter Tight", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Трекінг */
+  --tracking-tight: -0.04em;
+  --tracking-normal: -0.02em;
+
+  /* Висота рядка */
+  --leading-normal: normal;
+  --leading-h1: 0.82;
+  --leading-number: 0.9;
+  --leading-link: 1.5;
+
+  /* Розміри тексту */
+  /* Заголовок на всю ширину сітки: 121.46px при сітці 350px у мобільному макеті. cqw — ширина .hero */
+  --text-h1: calc((100cqw - var(--space-gutter) * 2) * 121.46 / 350);
+  --text-description: 56.27px;
+  --text-small-1: 20px;
+  --text-small-2: 14.29px;
+  --text-number: 151.54px;
+  --text-number-caption: 22.73px;
+  --text-footer-link: 32px;
+  --text-form-title: 60px;
+  --text-button: 22px;
+  --text-field: 18px;
+
+  /* Відступи */
+  --space-gutter: 20px;
+  --space-grid-edge: 0px;
+  --space-grid-gap: 3px;
+  --space-section: 100px;
+  --container-max: 1920px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --leading-h1: normal;
+
+    /* Заголовок на всю ширину сітки: 440px при сітці 1720px у макеті. cqw — ширина .hero */
+    --text-h1: calc((100cqw - var(--space-gutter) * 2) * 440 / 1720);
+    --text-description: 76px;
+    --text-small-1: 24px;
+    --text-small-2: 20px;
+    /* 200px на ширині 1920, на менших екранах масштабується. cqw — ширина .stats */
+    --text-number: min(200px, 100cqw * 200 / 1920);
+    --text-number-caption: 30px;
+
+    --space-gutter: 100px;
+    --space-grid-edge: 9px;
+    --space-grid-gap: 6px;
+    --space-section: 200px;
+  }
+}

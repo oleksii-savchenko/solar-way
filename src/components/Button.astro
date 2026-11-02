@@ -1,0 +1,105 @@
+---
+const { text, variant, href, type = "button", ...attrs } = Astro.props;
+const classes = ["button", variant && `button--${variant}`];
+const Tag = href ? "a" : "button";
+---
+
+<Tag class:list={classes} href={href} type={href ? undefined : type} {...attrs}>
+  <span class="button-text">{text}</span>
+  <span class="button-overlay" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8l4 4-4 4" />
+      <path d="M2 12h20" />
+    </svg>
+  </span>
+</Tag>
+
+<style>
+  .button {
+    --button-hover-bg: var(--color-panel);
+    --button-hover-color: var(--color-text);
+    position: relative;
+    overflow: clip;
+    display: inline-block;
+    width: 100%;
+    padding: calc(var(--space-gutter) * 1.5) 0;
+    border: 0;
+    background: var(--color-white);
+    color: var(--color-text);
+    font: inherit;
+    font-size: calc(var(--text-small-1) * 0.95);
+    letter-spacing: inherit;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Текст виїжджає праворуч, слідом зліва заїжджає шар зі стрілкою */
+  .button-text {
+    display: block;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .button-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--button-hover-bg);
+    color: var(--button-hover-color);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .button-overlay svg {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  .button:focus-visible .button-text {
+    transform: translateX(100%);
+  }
+
+  .button:focus-visible .button-overlay {
+    transform: none;
+  }
+
+  @media (hover: hover) {
+    .button:hover .button-text {
+      transform: translateX(100%);
+    }
+
+    .button:hover .button-overlay {
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button-text,
+    .button-overlay {
+      transition: none;
+    }
+  }
+
+  .button--accent {
+    --button-hover-bg: var(--color-text);
+    --button-hover-color: var(--color-white);
+    padding: var(--space-gutter) 0;
+    background: var(--color-accent);
+    font-size: calc(var(--text-small-2) * 1.1);
+  }
+
+  @media (min-width: 768px) {
+    .button {
+      width: auto;
+      padding: calc(var(--space-gutter) / 2 - var(--space-grid-gap) * 2) calc(var(--space-gutter) - var(--text-small-1));
+      font-size: var(--text-small-1);
+    }
+
+    .button--accent {
+      padding: calc(var(--space-gutter) / 2 - var(--space-grid-gap) * 3) calc(var(--space-gutter) * 0.6);
+      font-size: var(--text-button);
+    }
+  }
+</style>

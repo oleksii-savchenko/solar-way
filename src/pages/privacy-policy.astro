@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/sections/Footer.astro";
+import Privacy from "../components/sections/Privacy.astro";
+import privacy from "../content/privacy.json";
+---
+
+<Layout title={privacy.pageTitle} description={privacy.pageDescription}>
+  <main>
+    <Privacy />
+  </main>
+  <Footer flush />
+</Layout>

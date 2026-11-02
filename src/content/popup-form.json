@@ -1,0 +1,13 @@
+{
+  "title": "Calculate the cost",
+  "description": "Fill out the contact form, and we will get in touch with you\nshortly to provide a calculation",
+  "name": {
+    "placeholder": "Your name",
+    "error": "Please, enter correct name"
+  },
+  "phone": {
+    "placeholder": "Phone number",
+    "error": "Please, enter correct phone"
+  },
+  "button": "Send request"
+}
