@@ -8,6 +8,8 @@ import contacts from "../content/contacts.json";
 import hero from "../content/hero.json";
 import site from "../content/site.json";
 import { tel } from "../utils/tel";
+import interTight400 from "@fontsource/inter-tight/files/inter-tight-latin-400-normal.woff2?url";
+import interTight500 from "@fontsource/inter-tight/files/inter-tight-latin-500-normal.woff2?url";
 
 const { title = site.title, description = site.description, noindex = false } = Astro.props;
 
@@ -39,6 +41,9 @@ const business =
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content={site.themeColor} />
+
+    <link rel="preload" href={interTight400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={interTight500} as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" href={site.icons.svg} type="image/svg+xml" />
     <link rel="icon" href={site.icons.png} type="image/png" sizes="48x48" />

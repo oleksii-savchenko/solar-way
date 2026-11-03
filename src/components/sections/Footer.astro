@@ -2,12 +2,12 @@
 import footer from "../../content/footer.json";
 import hero from "../../content/hero.json";
 
-// На сторінках Thanks і Privacy policy футер іде впритул до контенту
+// На сторінках Thanks, Privacy policy і 404 футер іде впритул до контенту і показується без анімації
 const { flush = false } = Astro.props;
 ---
 
 <footer class:list={["footer", { "footer--flush": flush }]}>
-  <div class="main" data-reveal>
+  <div class="main" data-reveal={!flush || undefined}>
     <nav class="links">
       {hero.menu.links.map((link) => <a href={link.href}>{link.text}</a>)}
     </nav>
@@ -18,7 +18,7 @@ const { flush = false } = Astro.props;
     </div>
   </div>
 
-  <div class="bottom" data-reveal>
+  <div class="bottom" data-reveal={!flush || undefined}>
     <p>{footer.copyright}</p>
     <a class="privacy" href={footer.privacy.href}>{footer.privacy.text}</a>
     <a class="developer" href={footer.developer.href} target="_blank" rel="noopener">

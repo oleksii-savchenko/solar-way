@@ -1,6 +1,7 @@
 ---
 import Button from "../Button.astro";
 import services from "../../content/services.json";
+import { image } from "../../utils/image";
 ---
 
 <section class="services" id="services">
@@ -34,7 +35,7 @@ import services from "../../content/services.json";
         </div>
         <img
           class:list={["image", { "image--mirrored": item.imageMirrored }]}
-          src={item.image}
+          {...image(item.image, "(min-width: 768px) 42vw, 100vw")}
           alt={item.imageAlt}
           loading="lazy"
         />

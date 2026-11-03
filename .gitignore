@@ -3,3 +3,7 @@ dist/
 .astro/
 .env
 .env.*
+
+# Генерує scripts/optimize-images.mjs
+public/images/_responsive/
+src/generated/

@@ -1,5 +1,6 @@
 ---
 import why from "../../content/why.json";
+import { image } from "../../utils/image";
 ---
 
 <section class="why" id="about">
@@ -11,7 +12,7 @@ import why from "../../content/why.json";
       </h2>
       <p class="about">{why.about}</p>
     </div>
-    <img class="image" src={why.image} alt={why.imageAlt} loading="lazy" />
+    <img class="image" {...image(why.image, "(min-width: 768px) 50vw, 100vw")} alt={why.imageAlt} loading="lazy" />
   </div>
 
   <div class="cards" data-reveal-group data-cursor-zone>

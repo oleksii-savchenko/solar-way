@@ -5,20 +5,21 @@ import hero from "../../content/hero.json";
 
 // Той самий шаблон використовує сторінка 404, вона без тексту під заголовком
 const { title, text, button } = Astro.props;
+import { image } from "../../utils/image";
 ---
 
 <section class="thanks">
-  <div class="top" data-reveal>
+  <div class="top">
     <SiteHeader light />
     <h1 class="title">{title}</h1>
   </div>
 
-  <div class="content" data-reveal>
+  <div class="content">
     {text && <p class="text">{text}</p>}
     <Button text={button} variant="accent" href={hero.logo.href} />
   </div>
 
-  <img class="panel" data-reveal src={hero.panel.src} alt={hero.panel.alt} />
+  <img class="panel" {...image(hero.panel.src, "(min-width: 768px) 78vw, 95vw")} alt={hero.panel.alt} fetchpriority="high" />
 </section>
 
 <style>

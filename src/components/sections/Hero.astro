@@ -2,6 +2,7 @@
 import Button from "../Button.astro";
 import SiteHeader from "../SiteHeader.astro";
 import hero from "../../content/hero.json";
+import { image } from "../../utils/image";
 ---
 
 <section class="hero">
@@ -30,7 +31,7 @@ import hero from "../../content/hero.json";
 
     <div class="center">
       <div class="tagline" data-hero-step="tagline">
-        <img src={hero.brackets} alt="" />
+        <img {...image(hero.brackets)} alt="" />
         <p>{hero.tagline}</p>
       </div>
       <Button text={hero.button} data-open-popup="popup-form" data-service={hero.formSource} data-hero-step="button" />
@@ -40,7 +41,7 @@ import hero from "../../content/hero.json";
       {
         hero.features.map((feature) => (
           <li class="feature" data-hero-step="features">
-            <img src={feature.icon} alt="" />
+            <img {...image(feature.icon)} alt="" />
             <p>{feature.text}</p>
           </li>
         ))
@@ -48,7 +49,13 @@ import hero from "../../content/hero.json";
     </ul>
   </div>
 
-  <img class="panel" data-hero-step="panel" src={hero.panel.src} alt={hero.panel.alt} />
+  <img
+    class="panel"
+    data-hero-step="panel"
+    {...image(hero.panel.src, "(min-width: 768px) 78vw, 95vw")}
+    alt={hero.panel.alt}
+    fetchpriority="high"
+  />
 </section>
 
 <style>

@@ -1,6 +1,7 @@
 ---
 import Button from "../Button.astro";
 import projects from "../../content/projects.json";
+import { image } from "../../utils/image";
 ---
 
 <section class="projects" id="projects">
@@ -29,12 +30,17 @@ import projects from "../../content/projects.json";
           class="card"
           type="button"
           data-lightbox-open
-          data-image={item.image}
+          data-image={image(item.image).src}
           data-alt={item.imageAlt}
           data-city={item.city}
           data-text={item.text}
         >
-          <img class="card-image" src={item.image} alt={item.imageAlt} loading="lazy" />
+          <img
+            class="card-image"
+            {...image(item.image, "(min-width: 768px) 46vw, 100vw")}
+            alt={item.imageAlt}
+            loading="lazy"
+          />
           <span class="card-top">
             <span class="city">
               <img src={projects.dot} alt="" />

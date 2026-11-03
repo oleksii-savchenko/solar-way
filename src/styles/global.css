@@ -8,6 +8,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Атрибути width і height лише резервують місце за пропорціями, розмір задає CSS */
+img {
+  height: auto;
+}
+
 /* Масштаб рахує скрипт у Layout.astro. Поп-апи поза секціями не масштабуються */
 main > section,
 body > footer {

@@ -1,5 +1,6 @@
 ---
 import hero from "../content/hero.json";
+import { image } from "../utils/image";
 import { tel } from "../utils/tel";
 
 // На білому фоні точка логотипа жовта завжди, на жовтому — лише коли меню відкрите
@@ -23,8 +24,8 @@ const { light = false } = Astro.props;
   </button>
   <a class="logo" href={hero.logo.href}>
     {hero.logo.before}
-    <img class="when-closed" src={light ? hero.logo.dotMenuOpen : hero.logo.dot} alt="" />
-    <img class="when-open" src={hero.logo.dotMenuOpen} alt="" />
+    <img class="when-closed" {...image(light ? hero.logo.dotMenuOpen : hero.logo.dot)} alt="" />
+    <img class="when-open" {...image(hero.logo.dotMenuOpen)} alt="" />
     {hero.logo.after}
   </a>
   <a class="phone" href={tel(hero.phone.text)}>{hero.phone.text}</a>

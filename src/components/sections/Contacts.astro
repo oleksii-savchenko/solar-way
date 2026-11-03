@@ -2,6 +2,7 @@
 import Button from "../Button.astro";
 import contacts from "../../content/contacts.json";
 import { tel } from "../../utils/tel";
+import { image } from "../../utils/image";
 ---
 
 <section class="contacts" id="contact">
@@ -17,7 +18,12 @@ import { tel } from "../../utils/tel";
 
   <div class="map" data-reveal>
     <a class="map-fallback" href={contacts.map.link} target="_blank" rel="noopener">
-      <img class="map-image" src={contacts.map.image} alt={contacts.map.imageAlt} loading="lazy" />
+      <img
+        class="map-image"
+        {...image(contacts.map.image, "(min-width: 768px) 50vw, 100vw")}
+        alt={contacts.map.imageAlt}
+        loading="lazy"
+      />
       <img class="map-dot" src={contacts.map.dot} alt="" />
     </a>
   </div>

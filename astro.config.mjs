@@ -20,5 +20,11 @@ export default defineConfig({
   // Домен і шлях сайту: з них будуються canonical і адреса OG-картинки
   site: "https://oleksii-savchenko.github.io",
   base,
-  vite: { plugins: [contentBase()] },
+  // Стилі прямо в HTML: сторінка малюється без очікування CSS-файлів
+  build: { inlineStylesheets: "always" },
+  vite: {
+    plugins: [contentBase()],
+    // Шрифт заголовка вбудовується в стилі, тож заголовок одразу має свій розмір і не зсуває макет
+    build: { assetsInlineLimit: (file) => (file.endsWith("league-gothic-latin-400-normal.woff2") ? true : undefined) },
+  },
 });
