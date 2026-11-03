@@ -11,6 +11,6 @@
     "error": "Please, enter correct phone"
   },
   "button": "Send request",
-  "endpoint": "https://script.google.com/macros/s/AKfycbyKBoAhGr5WLXRPfylMpmt3hROuldx1G9TWOIy0FDX_XXs3dPLrSehmuYHy8ro7v1wh/exec",
+  "endpoint": "https://script.google.com/macros/s/AKfycbwQP33n1BKmf4rASeFOef0TxtIXyu3k5flQXuiXl9-kz_tLRJIy81l3AE1Vz64pV-Mu/exec",
   "sendError": "Could not send the request. Please, try again or call us"
 }
