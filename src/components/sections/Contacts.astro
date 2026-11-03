@@ -1,14 +1,14 @@
 ---
 import Button from "../Button.astro";
 import contacts from "../../content/contacts.json";
-import hero from "../../content/hero.json";
+import { tel } from "../../utils/tel";
 ---
 
 <section class="contacts" id="contact">
   <div class="info" data-reveal>
     <p class="about">{contacts.about}</p>
     <div class="details">
-      <a class="phone" href={hero.phone.href}>{hero.phone.text}</a>
+      <a class="phone" href={tel(contacts.phone)}>{contacts.phone}</a>
       <p class="address">{contacts.address}</p>
       <a class="email" href={`mailto:${contacts.email}`}>{contacts.email}</a>
       <Button text={contacts.button} variant="accent" data-open-popup="popup-form" data-service={contacts.formSource} />

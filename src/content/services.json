@@ -8,28 +8,27 @@
     "value": "174 PETAWATTS",
     "text": "That's how much energy\nthe sun delivers to the\nEarth, and we help you\nuse this power"
   },
-  "button": "Get a consultation",
   "items": [
     {
-      "number": "01",
       "title": "SOLAR STATION DESIGN\nAND INSTALLATION",
       "text": "custom solutions for your home that take all your\nneeds into account",
+      "button": "Get a consultation",
       "image": "/images/services/house.jpg",
       "imageAlt": "Modern house with solar panels",
       "imageMirrored": true
     },
     {
-      "number": "02",
       "title": "SYSTEM MAINTENANCE\nAND REPAIR",
       "text": "warranty and post-warranty service for\nuninterrupted operation",
+      "button": "Get a consultation",
       "image": "/images/services/engineer-laptop.jpg",
       "imageAlt": "Engineer checking a solar panel system on a laptop",
       "imageMirrored": false
     },
     {
-      "number": "03",
       "title": "INSPECTION AND UPGRADE\nOF EXISTING SYSTEMS",
       "text": "assessment of your solar stations' condition and\nimplementation of the latest technologies",
+      "button": "Get a consultation",
       "image": "/images/services/engineer-tablet.jpg",
       "imageAlt": "Engineer inspecting a solar panel with a tablet",
       "imageMirrored": false

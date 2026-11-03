@@ -2,6 +2,7 @@
 import SiteHeader from "../SiteHeader.astro";
 import contacts from "../../content/contacts.json";
 import hero from "../../content/hero.json";
+import { tel } from "../../utils/tel";
 import privacy from "../../content/privacy.json";
 ---
 
@@ -29,7 +30,7 @@ import privacy from "../../content/privacy.json";
       {hero.logo.before}
       {hero.logo.after}<br />
       {contacts.address}<br />
-      <a href={hero.phone.href}>{hero.phone.text}</a><br />
+      <a href={tel(hero.phone.text)}>{hero.phone.text}</a><br />
       <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
     </p>
   </div>

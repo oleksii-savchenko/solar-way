@@ -1,0 +1,227 @@
+# Адмінка Pages CMS (https://app.pagescms.org).
+# Поля з hidden: true клієнт не бачить: вони потрібні сайту і зберігаються як є.
+# Шляхи до картинок пишуться як /images/..., префікс /solar-way для GitHub Pages додає збірка.
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: header
+    label: Шапка
+    type: file
+    path: src/content/hero.json
+    format: json
+    fields:
+      - { name: menu, type: object, hidden: true, fields: [{ name: openLabel, type: string }, { name: closeLabel, type: string }, { name: links, type: object, list: true, fields: [{ name: text, type: string }, { name: href, type: string }] }] }
+      - { name: logo, type: object, hidden: true, fields: [{ name: href, type: string }, { name: before, type: string }, { name: after, type: string }, { name: dot, type: string }, { name: dotMenuOpen, type: string }] }
+      - name: phone
+        label: Телефон
+        type: object
+        fields:
+          - name: text
+            label: Номер телефону
+            description: "Наприклад: +38 095 456 12 36. Посилання для дзвінка створюється автоматично"
+            type: string
+            required: true
+      - name: title
+        label: "Перший екран: заголовок"
+        description: Великий текст угорі. Новий рядок — через Enter
+        type: text
+        required: true
+      - name: lead
+        label: "Перший екран: підзаголовок"
+        type: text
+      - { name: tagline, type: string, hidden: true }
+      - { name: brackets, type: string, hidden: true }
+      - name: button
+        label: "Перший екран: текст кнопки"
+        type: string
+        required: true
+      - { name: features, type: object, list: true, hidden: true, fields: [{ name: icon, type: string }, { name: text, type: text }] }
+      - name: panel
+        label: "Перший екран: зображення"
+        type: object
+        fields:
+          - name: src
+            label: Зображення
+            description: PNG з прозорим фоном, широке (як сонячна панель зараз)
+            type: image
+            required: true
+          - name: alt
+            label: Опис зображення
+            description: Що на картинці — для пошуковиків і незрячих
+            type: string
+      - { name: formSource, type: string, hidden: true }
+
+  - name: stats
+    label: Цифри
+    type: file
+    path: src/content/stats.json
+    format: json
+    fields:
+      - { name: title, type: text, hidden: true }
+      - { name: logoDot, type: string, hidden: true }
+      - name: items
+        label: Картки
+        type: object
+        list: { min: 4, max: 4 }
+        fields:
+          - { name: tone, type: string, hidden: true }
+          - name: number
+            label: Число
+            description: "Наприклад: 7+, 90+, 30%"
+            type: string
+            required: true
+          - name: caption
+            label: Підпис
+            description: Короткий текст біля числа. Новий рядок — через Enter
+            type: text
+          - name: text
+            label: Опис
+            type: text
+
+  - name: services
+    label: Послуги
+    type: file
+    path: src/content/services.json
+    format: json
+    fields:
+      - { name: title, type: object, hidden: true, fields: [{ name: first, type: string }, { name: second, type: string }] }
+      - { name: fact, type: object, hidden: true, fields: [{ name: icon, type: string }, { name: value, type: string }, { name: text, type: text }] }
+      - name: items
+        label: Список послуг
+        description: Номери 01, 02, 03… ставляться автоматично за порядком
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Назва
+            type: text
+            required: true
+          - name: text
+            label: Опис
+            type: text
+          - name: button
+            label: Текст кнопки
+            type: string
+            default: Get a consultation
+            required: true
+          - name: image
+            label: Фото
+            type: image
+            required: true
+          - name: imageAlt
+            label: Опис фото
+            description: Що на фото — для пошуковиків і незрячих
+            type: string
+          - name: imageMirrored
+            label: Віддзеркалити фото
+            type: boolean
+            default: false
+
+  - name: projects
+    label: Проєкти
+    type: file
+    path: src/content/projects.json
+    format: json
+    fields:
+      - { name: title, type: object, hidden: true, fields: [{ name: first, type: string }, { name: second, type: string }] }
+      - { name: about, type: text, hidden: true }
+      - { name: brackets, type: object, hidden: true, fields: [{ name: left, type: string }, { name: right, type: string }] }
+      - { name: stat, type: object, hidden: true, fields: [{ name: value, type: string }, { name: suffix, type: string }, { name: caption, type: string }] }
+      - { name: dot, type: string, hidden: true }
+      - { name: viewMore, type: string, hidden: true }
+      - { name: closeLabel, type: string, hidden: true }
+      - { name: closeIcon, type: string, hidden: true }
+      - name: items
+        label: Список проєктів
+        type: object
+        list: true
+        fields:
+          - name: city
+            label: Місто
+            type: string
+            required: true
+          - name: text
+            label: Опис
+            type: text
+          - name: image
+            label: Фото
+            type: image
+            required: true
+          - name: imageAlt
+            label: Опис фото
+            description: Що на фото — для пошуковиків і незрячих
+            type: string
+
+  - name: why
+    label: Переваги
+    type: file
+    path: src/content/why.json
+    format: json
+    fields:
+      - { name: title, type: object, hidden: true, fields: [{ name: first, type: string }, { name: second, type: string }] }
+      - { name: about, type: text, hidden: true }
+      - { name: image, type: string, hidden: true }
+      - { name: imageAlt, type: string, hidden: true }
+      - name: items
+        label: Переваги
+        type: object
+        list: { min: 3, max: 3 }
+        fields:
+          - { name: icon, type: string, hidden: true }
+          - name: caption
+            label: Назва
+            description: Новий рядок — через Enter
+            type: text
+            required: true
+          - name: text
+            label: Опис
+            type: text
+          - { name: featured, type: boolean, hidden: true }
+
+  - name: contacts
+    label: Контакти
+    type: file
+    path: src/content/contacts.json
+    format: json
+    fields:
+      - { name: about, type: text, hidden: true }
+      - name: phone
+        label: Телефон
+        description: "Наприклад: +38 095 456 12 36"
+        type: string
+        required: true
+      - name: address
+        label: Адреса
+        type: string
+      - name: email
+        label: Email
+        type: string
+      - { name: button, type: string, hidden: true }
+      - { name: map, type: object, hidden: true, fields: [{ name: image, type: string }, { name: imageAlt, type: string }, { name: dot, type: string }, { name: link, type: string }] }
+      - { name: formSource, type: string, hidden: true }
+
+  - name: seo
+    label: SEO
+    type: file
+    path: src/content/site.json
+    format: json
+    fields:
+      - { name: lang, type: string, hidden: true }
+      - { name: locale, type: string, hidden: true }
+      - { name: name, type: string, hidden: true }
+      - name: title
+        label: Заголовок сторінки
+        description: Назва у вкладці браузера та в Google. До 60 символів
+        type: string
+        required: true
+      - name: description
+        label: Опис для пошуку
+        description: Текст під заголовком у Google. До 160 символів
+        type: text
+        required: true
+      - { name: themeColor, type: string, hidden: true }
+      - { name: icons, type: object, hidden: true, fields: [{ name: svg, type: string }, { name: png, type: string }, { name: apple, type: string }] }
+      - { name: ogImage, type: object, hidden: true, fields: [{ name: src, type: string }, { name: width, type: number }, { name: height, type: number }, { name: alt, type: string }] }

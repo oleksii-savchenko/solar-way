@@ -1,5 +1,6 @@
 ---
 import hero from "../content/hero.json";
+import { tel } from "../utils/tel";
 
 // На білому фоні точка логотипа жовта завжди, на жовтому — лише коли меню відкрите
 const { light = false } = Astro.props;
@@ -26,12 +27,12 @@ const { light = false } = Astro.props;
     <img class="when-open" src={hero.logo.dotMenuOpen} alt="" />
     {hero.logo.after}
   </a>
-  <a class="phone" href={hero.phone.href}>{hero.phone.text}</a>
+  <a class="phone" href={tel(hero.phone.text)}>{hero.phone.text}</a>
 </header>
 
 <nav class="menu" id="site-menu" data-menu-panel>
   {hero.menu.links.map((link) => <a href={link.href}>{link.text}</a>)}
-  <a class="menu-phone" href={hero.phone.href}>{hero.phone.text}</a>
+  <a class="menu-phone" href={tel(hero.phone.text)}>{hero.phone.text}</a>
 </nav>
 
 <style>

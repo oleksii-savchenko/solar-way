@@ -17,16 +17,16 @@ import services from "../../content/services.json";
   </div>
 
   {
-    services.items.map((item) => (
+    services.items.map((item, index) => (
       <article class="service" data-reveal>
         <div class="info">
           <div class="info-top">
             <h3 class="service-title">{item.title}</h3>
-            <p class="number">{item.number}</p>
+            <p class="number">{String(index + 1).padStart(2, "0")}</p>
           </div>
           <p class="text">{item.text}</p>
           <Button
-            text={services.button}
+            text={item.button}
             variant="accent"
             data-open-popup="popup-form"
             data-service={item.title.replace("\n", " ")}
