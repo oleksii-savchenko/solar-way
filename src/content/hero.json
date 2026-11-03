@@ -3,10 +3,22 @@
     "openLabel": "Open menu",
     "closeLabel": "Close menu",
     "links": [
-      { "text": "About us", "href": "/#about" },
-      { "text": "Services", "href": "/#services" },
-      { "text": "Projects", "href": "/#projects" },
-      { "text": "Contact us", "href": "/#contact" }
+      {
+        "text": "About us",
+        "href": "/#about"
+      },
+      {
+        "text": "Services",
+        "href": "/#services"
+      },
+      {
+        "text": "Projects",
+        "href": "/#projects"
+      },
+      {
+        "text": "Contact us",
+        "href": "/#contact"
+      }
     ]
   },
   "logo": {
@@ -38,5 +50,6 @@
   "panel": {
     "src": "/images/hero/panel.png",
     "alt": "Black solar panel station"
-  }
+  },
+  "formSource": "First screen"
 }

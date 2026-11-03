@@ -11,7 +11,7 @@ import hero from "../../content/hero.json";
       <a class="phone" href={hero.phone.href}>{hero.phone.text}</a>
       <p class="address">{contacts.address}</p>
       <a class="email" href={`mailto:${contacts.email}`}>{contacts.email}</a>
-      <Button text={contacts.button} variant="accent" data-open-popup="popup-form" />
+      <Button text={contacts.button} variant="accent" data-open-popup="popup-form" data-service={contacts.formSource} />
     </div>
   </div>
 

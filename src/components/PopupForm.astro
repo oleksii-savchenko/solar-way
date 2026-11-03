@@ -7,9 +7,19 @@ import popup from "../content/popup-form.json";
   <div class="inner">
     <h2 class="title" id="popup-form-title">{popup.title}</h2>
     <p class="description">{popup.description}</p>
-    <form class="form" novalidate data-popup-form data-thanks-href={popup.thanksHref}>
-      <!-- Послуга, з якої прийшов запит. Порожньо, якщо поп-ап відкрито не з блоку послуг -->
+    <form
+      class="form"
+      novalidate
+      data-popup-form
+      data-endpoint={popup.endpoint}
+      data-thanks-href={popup.thanksHref}
+    >
+      <!-- Звідки прийшов запит: назва послуги або блоку, з кнопки якого відкрито поп-ап -->
       <input type="hidden" name="service" data-popup-service />
+      <!-- Пастка для ботів: людина цього поля не бачить і не заповнює -->
+      <div class="trap" aria-hidden="true">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" data-popup-trap />
+      </div>
       <input
         class="field"
         type="text"
@@ -31,6 +41,7 @@ import popup from "../content/popup-form.json";
         data-error={popup.phone.error}
       />
       <Button text={popup.button} variant="accent" type="submit" />
+      <p class="send-error" role="alert" hidden data-popup-send-error>{popup.sendError}</p>
     </form>
   </div>
 </dialog>
@@ -147,6 +158,26 @@ import popup from "../content/popup-form.json";
     color: var(--color-text);
   }
 
+  .form.is-sending :global(.button) {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .trap {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .send-error {
+    margin: 0;
+    color: var(--color-error);
+    font-size: var(--text-small-2);
+    text-align: center;
+  }
+
   @media (min-width: 768px) {
     /* Ширину вікна задає опис, поля вужчі за нього, як у макеті */
     .popup {
@@ -182,7 +213,11 @@ import popup from "../content/popup-form.json";
   const form = document.querySelector<HTMLFormElement>("[data-popup-form]")!;
   const popup = form.closest("dialog")!;
   const service = form.querySelector<HTMLInputElement>("[data-popup-service]")!;
+  const trap = form.querySelector<HTMLInputElement>("[data-popup-trap]")!;
+  const sendError = form.querySelector<HTMLElement>("[data-popup-send-error]")!;
+  const submit = form.querySelector<HTMLButtonElement>("[type=submit]")!;
   const fields = form.querySelectorAll<HTMLInputElement>(".field");
+  const SEND_TIMEOUT = 15000;
 
   const validators: Record<string, (value: string) => boolean> = {
     name: (value) => /^[\p{L}\s'’-]{2,}$/u.test(value.trim()),
@@ -205,20 +240,55 @@ import popup from "../content/popup-form.json";
 
   fields.forEach((field) => field.addEventListener("focus", () => clearError(field)));
 
-  form.addEventListener("submit", (event) => {
+  function setSending(sending: boolean) {
+    form.classList.toggle("is-sending", sending);
+    submit.disabled = sending;
+  }
+
+  // text/plain не викликає попереднього CORS-запиту, на який Apps Script не відповідає
+  async function sendRequest() {
+    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    const response = await fetch(form.dataset.endpoint!, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data),
+      signal: AbortSignal.timeout(SEND_TIMEOUT),
+    });
+    const result = await response.json();
+    if (!result.ok) throw new Error(result.error);
+  }
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (form.classList.contains("is-sending")) return;
+    sendError.hidden = true;
     fields.forEach((field) => {
       if (!validators[field.name](field.value)) showError(field);
     });
     if (form.querySelector(".is-error")) return;
 
-    // Сюди підключимо відправку заявки в Telegram: new FormData(form)
-    window.location.href = form.dataset.thanksHref!;
+    // Бот заповнив пастку: удаємо успіх, нічого не надсилаючи
+    if (trap.value) {
+      window.location.href = form.dataset.thanksHref!;
+      return;
+    }
+
+    setSending(true);
+    try {
+      await sendRequest();
+      window.location.href = form.dataset.thanksHref!;
+    } catch (error) {
+      console.error(error);
+      sendError.hidden = false;
+      setSending(false);
+    }
   });
 
   popup.addEventListener("close", () => {
     form.reset();
     fields.forEach(clearError);
+    sendError.hidden = true;
+    setSending(false);
   });
 
   document.addEventListener("click", (event) => {

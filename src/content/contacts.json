@@ -8,5 +8,6 @@
     "imageAlt": "Map with the office location in Kyiv",
     "dot": "/images/contacts/map-dot.svg",
     "link": "https://www.google.com/maps/search/?api=1&query=50.4285,30.4625"
-  }
+  },
+  "formSource": "Contacts"
 }

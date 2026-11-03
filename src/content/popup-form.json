@@ -10,5 +10,7 @@
     "placeholder": "Phone number",
     "error": "Please, enter correct phone"
   },
-  "button": "Send request"
+  "button": "Send request",
+  "endpoint": "https://script.google.com/macros/s/AKfycbwGhMkXUTq77ZUkb9pjuzmTPeR2EhSZRQDdkTLtYnttHIygen_Sx4O4yVeHoGteTJyV/exec",
+  "sendError": "Could not send the request. Please, try again or call us"
 }
