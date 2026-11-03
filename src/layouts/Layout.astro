@@ -78,6 +78,22 @@ const business =
         update();
         new ResizeObserver(update).observe(root);
 
+        // Chrome підключає вбудований шрифт заголовка на кадр пізніше, і макет зсувається.
+        // Сторінка показується, коли шрифт уже застосовано (через два кадри), або через 1,5 с
+        root.classList.add("fonts-loading");
+        var shown = false;
+        function show() {
+          if (shown) return;
+          shown = true;
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              root.classList.remove("fonts-loading");
+            });
+          });
+        }
+        setTimeout(show, 1500);
+        document.fonts.load('400 1em "League Gothic"', "SUN").then(show, show);
+
         // Ховає блоки до старту анімації появи, щоб вони не блимали при завантаженні
         if (!matchMedia("(prefers-reduced-motion: reduce)").matches) root.classList.add("has-reveal");
       })();

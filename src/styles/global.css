@@ -8,6 +8,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Клас знімає скрипт у Layout.astro, коли шрифт заголовка готовий */
+.fonts-loading body {
+  visibility: hidden;
+}
+
 /* Атрибути width і height лише резервують місце за пропорціями, розмір задає CSS */
 img {
   height: auto;

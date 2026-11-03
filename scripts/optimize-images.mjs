@@ -7,8 +7,8 @@ import sharp from "sharp";
 
 const ROOT = "public/images";
 const OUT = "_responsive";
-const WIDTHS = [480, 960, 1440, 1920, 2560];
-const QUALITY = 75;
+const WIDTHS = [480, 720, 960, 1440, 1920, 2560];
+const QUALITY = 70;
 
 async function walk(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
