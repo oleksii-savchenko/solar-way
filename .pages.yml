@@ -1,6 +1,6 @@
 # Адмінка Pages CMS (https://app.pagescms.org).
 # Поля з hidden: true клієнт не бачить: вони потрібні сайту і зберігаються як є.
-# Шляхи до картинок пишуться як /images/..., префікс /solar-way для GitHub Pages додає збірка.
+# Шляхи до картинок пишуться як /images/... — від кореня сайту.
 
 media:
   input: public/images

@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 
-const base = "/solar-way";
+// Сайт у корені домену; для підпапки впиши її сюди, напр. "/solar-way"
+const base = "";
 
 // Додає base до всіх шляхів від кореня сайту у файлах контенту
 function contentBase() {
@@ -18,8 +19,8 @@ function contentBase() {
 
 export default defineConfig({
   // Домен і шлях сайту: з них будуються canonical і адреса OG-картинки
-  site: "https://oleksii-savchenko.github.io",
-  base,
+  site: "https://solar.hawk-style.com",
+  base: base || "/",
   // Стилі прямо в HTML: сторінка малюється без очікування CSS-файлів
   build: { inlineStylesheets: "always" },
   vite: {
