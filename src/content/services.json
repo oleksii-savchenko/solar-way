@@ -32,6 +32,14 @@
       "image": "/images/services/engineer-tablet.jpg",
       "imageAlt": "Engineer inspecting a solar panel with a tablet",
       "imageMirrored": false
+    },
+    {
+      "title": "TEST SERVICES",
+      "text": "assessment of your solar stations' condition and\nimplementation of the latest technologies",
+      "button": "Get a consultation",
+      "image": "/images/services/house.jpg",
+      "imageAlt": "Test",
+      "imageMirrored": false
     }
   ]
 }
