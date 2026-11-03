@@ -53,6 +53,12 @@
       "text": "проектування і встановлення\nсонячної станції на 12 кВт",
       "image": "/images/projects/kharkiv.jpg",
       "imageAlt": "House with solar panels on a sloped roof in Kharkiv"
+    },
+    {
+      "city": "DNIPRO",
+      "text": "проектування і встановлення\nсонячної станції на 12 кВт",
+      "image": "/images/projects/kyiv.jpg",
+      "imageAlt": "House with solar panels on a sloped roof in Kharkiv"
     }
   ]
 }
